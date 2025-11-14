@@ -53,6 +53,14 @@ export default function Home() {
               className="block mt-0 pointer-events-none"
             />
           </Link>
+          <Image
+            src="/banner1.png"
+            alt="Clock"
+            width={280}
+            height={280}
+            className="absolute top-100 right-0 sm:right-5 z-10 pointer-events-none"
+          />
+
 
           {/* Centered 30-day timer */}
           <div className="z-20">
@@ -84,7 +92,7 @@ export default function Home() {
             alt="Grass"
             width={360}
             height={140}
-            className="absolute left-0 bottom-0 z-25 w-40 md:w-64 lg:w-80 pointer-events-none"
+            className="fixed left-0 bottom-0 z-20 w-40 md:w-64 lg:w-80 pointer-events-none"
           />
         </div>
       </ClickSpark>
