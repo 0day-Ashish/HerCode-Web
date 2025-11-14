@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 import ClickSpark from "@/components/ClickSpark";
 
 
@@ -36,6 +37,7 @@ export default function Home() {
 
   return (
     <>
+    
       <ClickSpark
         sparkColor="#8d001f"
         sparkSize={10}
