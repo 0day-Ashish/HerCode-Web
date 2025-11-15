@@ -13,7 +13,6 @@ import ClickSpark from "@/components/ClickSpark";
 
 
 export default function Home() {
-  // seconds remaining
   const [timeLeft, setTimeLeft] = useState<number>(30 * 24 * 60 * 60);
   const targetRef = useRef<number | null>(null);
   const links = [
@@ -44,12 +43,11 @@ export default function Home() {
       icon: (
         <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "#",
+      href: "https://github.com/0day-Ashish/HerCode26",
     },
   ];
 
   useEffect(() => {
-    // set a persistent target for this session (now + 30 days)
     if (!targetRef.current) {
       targetRef.current = Date.now() + 30 * 24 * 60 * 60 * 1000;
     }
@@ -82,7 +80,6 @@ export default function Home() {
         sparkCount={8}
         duration={400}
       >
-        {/* Floating dock: on mobile place it to the right of the logo; on md+ keep previous top-left position */}
         <div className="fixed top-90 left-3 z-40 flex flex-col items-start md:top-52 md:left-10">
           <FloatingDock mobileClassName="translate-y-20" items={links} />
         </div>
@@ -103,12 +100,10 @@ export default function Home() {
             alt="Welcome"
             width={280}
             height={280}
-            // mobile: smaller and pinned near viewport bottom; md+: larger and bottom-aligned
-            className="absolute right-4 sm:right-5 bottom-0 md:bottom-0 top-auto z-10 pointer-events-none w-48 md:w-62"
+            className="absolute right-4 sm:right-5 bottom-0 md:bottom-0 top-auto z-10 pointer-events-none w-48 md:w-62 float-anim"
           />
-          {/* Centered 30-day timer */}
           <div className="z-20">
-            <div className="text-white p-6 md:p-8 flex flex-col items-center">
+            <div className="text-white p-6 md:p-8 flex flex-col items-center lg:mt-20">
               
               <div className="flex gap-3 md:gap-6">
                 <div className="flex flex-col items-center bg-white/4 rounded-lg px-4 py-3 md:px-6 md:py-4 min-w-[72px]">

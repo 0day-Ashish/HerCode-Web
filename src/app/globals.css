@@ -160,4 +160,14 @@
     -moz-osx-font-smoothing: grayscale;
   }
 }
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+.float-anim {
+  animation: float 4s ease-in-out infinite;
+  will-change: transform;
+}
 
