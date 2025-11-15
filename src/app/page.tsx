@@ -2,7 +2,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { FloatingDock } from "@/components/ui/floating-dock";
+import {
+  IconBrandGithub,
+  IconHome,
+  IconPhoneCall,
+  IconTerminal2,
+} from "@tabler/icons-react";
 import ClickSpark from "@/components/ClickSpark";
 
 
@@ -10,6 +16,37 @@ export default function Home() {
   // seconds remaining
   const [timeLeft, setTimeLeft] = useState<number>(30 * 24 * 60 * 60);
   const targetRef = useRef<number | null>(null);
+  const links = [
+    {
+      title: "Home",
+      icon: (
+        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#",
+    },
+ 
+    {
+      title: "Register",
+      icon: (
+        <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#",
+    },
+    {
+      title: "Contact Us",
+      icon: (
+        <IconPhoneCall className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#",
+    },
+    {
+      title: "GitHub",
+      icon: (
+        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#",
+    },
+  ];
 
   useEffect(() => {
     // set a persistent target for this session (now + 30 days)
@@ -45,8 +82,13 @@ export default function Home() {
         sparkCount={8}
         duration={400}
       >
+        {/* Floating dock: on mobile place it to the right of the logo; on md+ keep previous top-left position */}
+        <div className="fixed top-90 left-3 z-40 flex flex-col items-start md:top-52 md:left-10">
+          <FloatingDock mobileClassName="translate-y-20" items={links} />
+        </div>
+        
         <div className="min-h-screen relative flex items-center justify-center">
-          <Link href="/" className="absolute top-4 left-5 z-30">
+          <Link href="/" className="absolute top-6 left-5 z-30">
             <Image
               src="/logo1.png"
               alt="Logo"
@@ -55,15 +97,15 @@ export default function Home() {
               className="block mt-0 pointer-events-none"
             />
           </Link>
+          
           <Image
-            src="/banner1.png"
-            alt="Clock"
+            src="/welcome.png"
+            alt="Welcome"
             width={280}
             height={280}
-            className="absolute top-100 right-0 sm:right-5 z-10 pointer-events-none"
+            // mobile: smaller and pinned near viewport bottom; md+: larger and bottom-aligned
+            className="absolute right-4 sm:right-5 bottom-0 md:bottom-0 top-auto z-10 pointer-events-none w-48 md:w-62"
           />
-
-
           {/* Centered 30-day timer */}
           <div className="z-20">
             <div className="text-white p-6 md:p-8 flex flex-col items-center">
