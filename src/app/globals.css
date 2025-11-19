@@ -159,6 +159,20 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* smaller base font-size on small devices so rem-based Tailwind sizes scale down */
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px; /* phones / small tablets */
+    }
+  }
+
+  /* extra small screens */
+  @media (max-width: 420px) {
+    html {
+      font-size: 13px;
+    }
+  }
 }
 @keyframes float {
   0% { transform: translateY(0); }

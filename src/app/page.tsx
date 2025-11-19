@@ -98,7 +98,11 @@ export default function Home() {
 
           {/* Centered 30-day timer (pushed down on large screens) */}
           <div className="z-20">
-            <div className="text-white p-6 md:p-8 flex flex-col items-center lg:mt-20">
+            <div className="text-white font-bold p-6 md:p-8 flex flex-col items-center lg:mt-20">
+              {/* Event info above the timer */}
+              <p className="text-sm text-white/90 mb-4">
+                March 17-18, 2026 | In-Person | Adamas University
+              </p>
               <div className="flex gap-3 md:gap-6">
                 <div className="flex flex-col items-center bg-white/4 rounded-lg px-4 py-3 md:px-6 md:py-4 min-w-[72px]">
                   <span className="text-2xl md:text-3xl font-semibold">{days}</span>
@@ -117,8 +121,8 @@ export default function Home() {
                   <span className="text-xs md:text-sm text-white/80 font-bold">Seconds</span>
                 </div>
               </div>
-               {/* Buttons: Register (filled) and Sponsor (transparent) */}
-               <div className="mt-6 flex items-center justify-center gap-4">
+              {/* Buttons: Register (filled) and Sponsor (transparent) */}
+              <div className="mt-6 flex items-center justify-center gap-4">
                 <Link
                   href="/registrations"
                   className="px-4 py-2 sm:px-7 sm:py-4 rounded-md bg-pink-500 text-white text-sm font-medium"
@@ -127,7 +131,7 @@ export default function Home() {
                 </Link>
 
                 <Link
-                  href="/sponsor"
+                  href="/sponsors"
                   className="px-4 py-2 sm:px-7 sm:py-4 rounded-md bg-transparent border border-white/20 text-white text-sm font-medium"
                 >
                   Sponsor
