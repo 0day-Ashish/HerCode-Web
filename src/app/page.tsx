@@ -13,13 +13,17 @@ import {
   IconHome,
   IconPhoneCall,
   IconTerminal2,
+  IconPlus,
 } from "@tabler/icons-react";
 import ClickSpark from "@/components/ClickSpark";
 import CurvedLoop from "@/components/CurvedLoop";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState<number>(30 * 24 * 60 * 60);
   const targetRef = useRef<number | null>(null);
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const links = [
     {
@@ -67,6 +71,39 @@ export default function Home() {
 
   const pad = (n: number) => String(n).padStart(2, "0");
 
+  const faqItems = [
+    {
+      q: "Who can attend?",
+      a: "HerCode'26 welcomes women and non-binary participants of all skill levels — students and professionals alike.",
+    },
+    {
+      q: "Do I need a team?",
+      a: "You can join solo or with a team. Team formation support will be available at the event.",
+    },
+    {
+      q: "Do I need a team?",
+      a: "You can join solo or with a team. Team formation support will be available at the event.",
+    },
+    {
+      q: "Do I need a team?",
+      a: "You can join solo or with a team. Team formation support will be available at the event.",
+    },
+    {
+      q: "Is there a participation fee?",
+      a: "Basic participation is free. Any paid workshops or extras will be announced in advance.",
+    },
+  ];
+
+  const [faqOpen, setFaqOpen] = useState<Record<number, boolean>>({});
+  const toggleFaq = (i: number) => setFaqOpen((s) => ({ ...s, [i]: !s[i] }));
+
+  const handleRegister = async () => {
+    if (loading) return;
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 1000));
+    router.push("/registrations");
+  };
+
   return (
     <>
       <main>
@@ -102,7 +139,7 @@ export default function Home() {
 
             <div className="z-20">
               <div className="text-white font-bold p-6 md:p-8 flex flex-col items-center lg:mt-20">
-                <p className="text-white/90 mb-4 give-you-glory glow">
+                <p className="text-white/90 mb-4 give-you-glory">
                   March 17-18, 2026 | In-Person | Adamas University
                 </p>
                 <div className="flex gap-3 md:gap-6">
@@ -124,16 +161,25 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="mt-6 flex items-center justify-center gap-4 give-you-glory font-bold">
-                  <Link
-                    href="/registrations"
-                    className="px-4 py-2 sm:px-7 sm:py-4 rounded-md bg-pink-500 text-white text-sm font-medium"
+                  <button
+                    onClick={handleRegister}
+                    disabled={loading}
+                    aria-busy={loading}
+                    className="px-4 py-2 sm:px-7 sm:py-4 rounded-md bg-pink-500 text-white text-sm font-medium tracking-widest disabled:opacity-60 disabled:cursor-wait"
                   >
-                    Register
-                  </Link>
+                    {loading ? (
+                      <span className="inline-flex items-center gap-3">
+                        <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                        Preparing...
+                      </span>
+                    ) : (
+                      "Register"
+                    )}
+                  </button>
 
                   <Link
                     href="/sponsors"
-                    className="px-4 py-2 sm:px-7 sm:py-4 rounded-md bg-transparent border border-white/20 text-white text-sm font-medium"
+                    className="px-4 py-2 sm:px-7 sm:py-4 rounded-md bg-transparent border border-white/20 text-white text-sm font-medium tracking-widest"
                   >
                     Sponsor
                   </Link>
@@ -211,7 +257,7 @@ export default function Home() {
 
                 <div className="bg-white/4 rounded-lg p-6 text-left">
                   <h3 className="text-lg font-semibold text-white">Web3</h3>
-                  <p className="text-white/80 text-sm mt-2"></p>
+                  <p className="text-white/80 text-sm mt-2">Decentralized applications, blockchain development, and smart contracts.</p>
                 </div>
 
                 <div className="bg-white/4 rounded-lg p-6 text-left">
@@ -228,14 +274,62 @@ export default function Home() {
                   <p className="text-white/80 text-sm mt-2">Educational technology projects, learning platforms, and digital classrooms.</p>
                 </div>
                 <div className="bg-white/4 rounded-lg p-6 text-left">
-                  <h3 className="text-lg font-semibold text-white">IOT</h3>
+                  <h3 className="text-lg font-semibold text-white">IoT & Smart Systems</h3>
+                  <p className="text-white/80 text-sm mt-2">Internet of Things projects, connected devices, and smart systems</p>
+                </div>
+                <div className="bg-white/4 rounded-lg p-6 text-left">
+                  <h3 className="text-lg font-semibold text-white">Open Innovation</h3>
                   <p className="text-white/80 text-sm mt-2">Internet of Things projects, connected devices, and smart systems</p>
                 </div>
               </div>
             </div>
           </section>
+
+          <section id="faq" className="mt-40 mb-20">
+            <div className="max-w-4xl mx-auto px-6">
+              <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6 text-center give-you-glory">FAQ</h2>
+
+              <div className="space-y-3 give-you-glory font-bold tracking-widest">
+                {faqItems.map((item, idx) => {
+                  const open = !!faqOpen[idx];
+                  return (
+                    <div key={idx} className="bg-white/4 rounded-lg p-2">
+                      <div className="flex items-center">
+                        <div className="flex-1">
+                          <div className="text-white font-medium">{item.q}</div>
+                        </div>
+                        <button
+                          onClick={() => toggleFaq(idx)}
+                          aria-expanded={open}
+                          className="ml-4 text-white/80 p-2 rounded hover:bg-white/6"
+                        >
+                          <IconPlus
+                            className={`h-5 w-5 transform transition-transform duration-200 ${open ? "rotate-45" : "rotate-0"}`}
+                          />
+                        </button>
+                      </div>
+                      <div
+                        className={`mt-2 overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+                      >
+                        <p className="text-white/80 text-sm">{item.a}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
         </ClickSpark>
       </main>
+
+      {loading && (
+        <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/50 backdrop-blur-sm pointer-events-auto">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+            <div className="text-white give-you-glory font-bold tracking-widest">Cooking registration's page for ya!…</div>
+          </div>
+        </div>
+      )}
 
       <footer className="w-full border-t border-white/5 py-6 mt-8">
         <div className="max-w-5xl mx-auto px-6 text-center text-white/80">
@@ -250,7 +344,7 @@ export default function Home() {
           </div>
           <div className="mt-3 flex items-center justify-center gap-6 mb-3">
             <a
-              href="https://discord.gg/YOUR_INVITE"
+              href="https://discord.gg/8PNRVMPa"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Discord"
