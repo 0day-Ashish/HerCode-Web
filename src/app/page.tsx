@@ -136,9 +136,12 @@ export default function Home() {
               height={280}
               className="absolute right-4 sm:right-5 bottom-0 md:bottom-0 top-auto z-10 pointer-events-none w-48 md:w-62 float-anim"
             />
-
+            
             <div className="z-20">
               <div className="text-white font-bold p-6 md:p-8 flex flex-col items-center lg:mt-20">
+                <p className="text-xl text-white/70 mb-5 uppercase tracking-widest give-you-glory font-bold">
+                  Her Ideas. Her Team. HerCode.
+                </p>
                 <p className="text-white/90 mb-4 give-you-glory">
                   March 17-18, 2026 | In-Person | Adamas University
                 </p>
@@ -209,11 +212,13 @@ export default function Home() {
           </div>
 
           <section id="about" className="give-you-glory">
+            
+             
             <div className="container max-w-5xl mx-auto px-6">
               <h2 className="text-3xl md:text-4xl font-bold text-white mt-50 mb-4 text-center">
                 What is HerCode’26?
               </h2>
-              <p className="text-center text-white/80 max-w-3xl mx-auto mb-10 font-bold">
+              <p className="text-center text-white/80 max-w-3xl mx-auto mb-20 font-bold">
                 HerCode’26 is a 24-hour, female-only hackathon hosted at Adamas University that empowers women to design, build, and showcase tech solutions across Ai-Ml, Web3, Cybersecurity, HealthTech, EdTech, IoT and more. We provide mentorship, workshops, and hands-on support — creating a safe, collaborative space for learners and innovators.
               </p>
 
@@ -239,6 +244,13 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            <Image
+              src="/tree.png"
+              alt="Tree"
+              width={220}
+              height={220}
+              className="absolute right-0 bottom-8 sm:bottom-10 md:bottom-16 lg:bottom-24 z-0 pointer-events-none w-24 sm:w-32 md:w-40 lg:w-48"
+            />
           </section>
           <CurvedLoop marqueeText="Women in tech ✦" />
 
@@ -333,8 +345,8 @@ export default function Home() {
 
       <footer className="w-full border-t border-white/5 py-6 mt-8">
         <div className="max-w-5xl mx-auto px-6 text-center text-white/80">
-          <p className="text-sm">&copy; {new Date().getFullYear()} HerCode'26 — All rights reserved.</p>
-          <div className="mt-3 flex items-center justify-center gap-4">
+          <p className="text-sm give-you-glory font-bold">&copy; {new Date().getFullYear()} HerCode'26 — All rights reserved.</p>
+          <div className="mt-3 flex items-center justify-center give-you-glory font-bold  gap-4">
             <Link href="/privacy" className="text-sm underline">
               Privacy
             </Link>
