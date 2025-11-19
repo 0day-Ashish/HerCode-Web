@@ -112,68 +112,71 @@
 }
 
 @layer base {
-  /* keep border/outline but ensure box-sizing and pseudo elements too */
   *, *::before, *::after {
     box-sizing: border-box;
     @apply border-border outline-ring/50;
   }
 
-  /* Ensure html also has the site background so overscroll/corners don't show white */
   html {
-    @apply bg-background;
+    @apply text-foreground;
     height: 100%;
-    /* Prevent elastic overscroll from revealing the browser background at top/bottom */
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
-
-    /* apply gradient background (with color fallback) */
-    background-image: var(--background-gradient);
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: var(--background-gradient);
     background-color: var(--background);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-
-    /* make sure scroll happens on body, not html, to avoid exposing chrome in some browsers */
-    overflow-x: hidden;
-    overflow-y: auto;
+    background-attachment: fixed;
   }
 
   body {
-    @apply bg-background text-foreground;
-    /* ensure body participates fully in the viewport and paints the gradient */
+    @apply text-foreground;
     height: 100%;
     min-height: 100dvh;
     margin: 0;
-
-    /* prevent vertical overscroll from exposing parent/background */
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
-
-    /* ensure body also paints the gradient and color */
-    background-image: var(--background-gradient);
-    background-color: var(--background);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
+    background: transparent;
+    background-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
-  /* smaller base font-size on small devices so rem-based Tailwind sizes scale down */
   @media (max-width: 640px) {
     html {
-      font-size: 14px; /* phones / small tablets */
+      font-size: 16px;
     }
   }
 
-  /* extra small screens */
-  @media (max-width: 420px) {
+  @media (max-width: 400px) {
     html {
-      font-size: 13px;
+      font-size: 15px;
     }
   }
 }
+
+@font-face {
+  font-family: "GiveYouGlory";
+  src: url("/fonts/GiveYouGlory-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.give-you-glory {
+  font-family: "GiveYouGlory";
+}
+
+.glow {
+  text-shadow:
+    0 2px 6px rgba(141, 0, 31, 0.6),
+    0 6px 20px rgba(141, 0, 127, 0.18);
+  filter: drop-shadow(0 6px 18px rgba(141, 0, 127, 0.12));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @keyframes float {
   0% { transform: translateY(0); }
   50% { transform: translateY(-12px); }

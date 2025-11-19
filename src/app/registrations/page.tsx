@@ -18,16 +18,13 @@ export default function RegistrationsPage() {
       return;
     }
 
-    // simple email pattern check
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setError("Please enter a valid email address.");
       return;
     }
 
-    // mock submit (replace with real API call as needed)
     setSubmitted(true);
-    // clear form (optional)
     setName("");
     setEmail("");
     setNotes("");
