@@ -107,6 +107,13 @@ export default function Home() {
   return (
     <>
       <main>
+        <Image
+          src="/clouds.png"
+          alt="Clouds"
+          width={420}
+          height={200}
+          className="absolute top-2 right-2 z-10 pointer-events-none w-36 sm:w-48 md:w-64 opacity-95"
+        />
         <ClickSpark
           sparkColor="#8d001f"
           sparkSize={10}
