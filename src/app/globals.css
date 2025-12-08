@@ -159,10 +159,30 @@
 
 @font-face {
   font-family: "GiveYouGlory";
-  src: url("/fonts/GiveYouGlory-Regular.ttf") format("truetype");
+  src: url("/fonts/RobotoCondensed-VariableFont_wght.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+}
+@font-face {
+  font-family: "rubiks";
+  src: url("/fonts/RubikDoodleShadow-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.rubiks {
+  font-family: "rubiks";
+}
+@font-face {
+  font-family: "kanit";
+  src: url("/fonts/Kanit-SemiBold.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.kanit {
+  font-family: "kanit";
 }
 .give-you-glory {
   font-family: "GiveYouGlory";
